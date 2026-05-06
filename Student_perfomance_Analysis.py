@@ -7,36 +7,31 @@ df = pd.read_csv("student_data_modified (1).csv")
 print(df.head())
 
 
-
-# Bar Chart → Marks per StudentID
-
-plt.figure()
-plt.bar(df['StudentID'], df['Marks'])
-plt.title("Marks of Students")
-plt.xlabel("Student ID")
-plt.ylabel("Marks")
+# 1. HISTOGRAM - Distribution of Marks
+plt.figure(figsize=(8, 5))
+plt.hist(df['Marks'], bins=10, color='skyblue', edgecolor='black')
+plt.title("Histogram - Distribution of Marks")
+plt.xlabel("Marks")
+plt.ylabel("Frequency")
+plt.grid(axis='y', alpha=0.3)
 plt.show()
 
 
-
-# Line Chart → Marks trend
-#
-plt.figure()
-plt.plot(df['StudentID'], df['Marks'], marker='o')
-plt.title("Marks Trend")
+# 2. COLUMN CHART - Marks per Student
+plt.figure(figsize=(10, 5))
+plt.bar(df['StudentID'], df['Marks'], color='orange', edgecolor='black')
+plt.title("Column Chart - Marks Per Student")
 plt.xlabel("Student ID")
 plt.ylabel("Marks")
+plt.grid(axis='y', alpha=0.3)
 plt.show()
 
 
-
-# Pie Chart → Pass vs Fail
-
-df['Result'] = df['Marks'].apply(lambda x: 'Pass' if x >= 50 else 'Fail')
-
-result_counts = df['Result'].value_counts()
-
-plt.figure()
-plt.pie(result_counts, labels=result_counts.index, autopct='%1.1f%%')
-plt.title("Pass vs Fail")
+# 3. SCATTER PLOT - Study Hours vs Marks
+plt.figure(figsize=(8, 5))
+plt.scatter(df['StudyHours'], df['Marks'], color='green', s=100, alpha=0.6)
+plt.title("Scatter Plot - Study Hours vs Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
+plt.grid(alpha=0.3)
 plt.show()
